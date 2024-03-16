@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles1.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* .navbar{
+            background-color: tomato;
+            padding: 0px;
+        } */
+        nav{
+            padding:30px;
+        }
+        ul{
+            display: flex;
+            line-height: 80px;
+            margin: 0 5px;
+        }
+        
+        li{
+            
+            margin: 10px;
+            margin: 10px;
+        }
+        li:hover{
+            background-color: rgba(255, 99, 71, 0.822);
+            padding:0px;
+            border-radius: 30%;
+            transition-duration: 0.7s;
+        }
+       
+        /* Popup window styles */
+        .popup-container {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ff0000; /* Red shadow */
+        }
+
+        .popup-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #ff0000; /* Red title */
+        }
+
+        .popup-description {
+            margin-bottom: 10px;
+        }
+
+        .popup-code {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            border: 1px solid #ff0000; /* Red border */
+        }
+
+        #dataContainer {
+            margin: 20px;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 10px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #444;
+            padding: 15px; /* Adjusted padding for taller rows */
+            text-align: left;
+        }
+
+        .data-table th {
+            background-color: #800000; /* Dark red */
+            color: #fff;
+            padding: 15px;
+        }
+
+        .data-table td:last-child {
+            color: #ff8080; /* Light red */
+        }
+
+        .data-table tbody tr:nth-child(even) {
+            background-color: #444;
+        }
+
+        .data-table tbody tr {
+            margin-bottom: 10px; /* Add margin between rows */
+            transition: background-color 0.3s;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #555;
+        }
+
+        .title-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #800000;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+            text-decoration: none;
+            cursor: pointer; /* Add cursor pointer */
+        }
+
+        .title-button:hover {
+            background-color: #600000; /* Darker red on hover */
+            border-color: #600000; /* Darker border on hover */
+        }
+        
+        .search-box{
+
+            border:none;
+            background-color: white;
+            border-color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: right;
+            align-items: right;
+
+        }
+        
+        /* #searchInput{
+            background-color: #ffffff33;
+            border: none;
+        }
+
+        #ipsymbol{
+            background-color: rgb(255, 0, 0);
+        }
+        #searchType{
+            background-color: rgba(255, 255, 255, 0);
+            color: #ff0000;
+            border: none;
+        }
+        .brand{
+            font-size: 35px;
+            
+            color: rgb(253, 201, 201);
+        } */
+
+        #searchInput {
+        color: #000000;
+    }
+
+    /* Make the search button wider */
+    #ipsymbol {
+        width: 50px; /* Adjust as needed */
+    }
+
+    /* Position the search box at the right of the navbar */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .search-box {
+        display: flex;
+        align-items: center;
+        text-emphasis-color: black;
+    }
+
+
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+
+
+        <div class="navbar">
+            <!-- <nav class="navigation hide" id="navigation"> -->
+                <!-- <span class="close-icon" id="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span> -->
+                
+            <!-- </nav> -->
+            <!-- <a class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a> -->
+           
+            <div class="brand">DevSmith</div>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="forms2.html">Forums</a></li>
+                    <li class="nav-item"><a href="posts.html">Posts</a></li>
+                    <li class="nav-item"><a href="detail.html">Detail</a></li>
+            </ul> 
+            <div class="search-box">
+                    
+                    <!-- <select name="" id="searchType">
+                        <option value="Titles" >Titles</option>
+                    </select> -->
+                    <input type="text" id="searchInput" name="q" placeholder="search ...">
+                    <button onclick="searchContent()" id="ipsymbol"><i class="fa fa-search"></i></button>
+                    
+            </div>
+        </div>
+
+        <!--SearchBox Section-->
+        <script>
+            // Global variable to store fetched data
+            var data = {};
+
+            function searchContent() {
+                var searchInput = document.getElementById('searchInput').value.toLowerCase();
+
+                // Iterate over the fetched data
+                for (const key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        const entry = data[key];
+                        var title = entry.title.toLowerCase();
+
+                        // Check if title matches search input
+                        if (title.includes(searchInput)) {
+                            // Open popup for the matching entry
+                            showPopup(entry.title, entry.name, entry.Description, entry.Code_or_Query);
+                            break; // Exit loop after finding the first match
+                        }
+                    }
+                }
+            }
+        </script>
+    </header>
+    <div class="container">
+        <!-- Middle General Information Section -->
+        <div class="subforum">
+            <div class="subforum-title">
+                <h1>General Information</h1>
+            </div>
+
+            <div id="dataContainer">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Last Post By</th>
+                            <th>Description</th>
+                            <th>Last Post Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTableBody">
+                        <!-- Table body will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Popup window -->
+    <div class="popup-container" id="popupContainer" style="display: none;">
+        <div class="popup-title" id="popupTitle">Popup Title</div>
+        <div class="popup-description" id="popupDescription">Popup Description</div>
+    </div>
+
+    <!-- Forum Info -->
+    <div class="forum-info">
+        <div class="comment">
+           
+            <button onclick="window.location.href='index.html';">Query</button>
+            <button id="fetchButton">Reload</button>
+        <footer>
+            <span>© MOXA CODERS | DEVSMITH</span>
+        </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+        <script>
+            const firebaseConfig = {
+                apiKey: "AIzaSyAO6QmCk6oe0l9KfjKZiTFBbitFG4BG3xo",
+                authDomain: "devsmith-4dcba.firebaseapp.com",
+                databaseURL: "https://devsmith-4dcba-default-rtdb.firebaseio.com",
+                projectId: "devsmith-4dcba",
+                storageBucket: "devsmith-4dcba.appspot.com",
+                messagingSenderId: "369103058842",
+                appId: "1:369103058842:web:820fdcd03c5d8014af2c23"
+            };
+        
+            const fetchData = () => {
+                axios.get(`${firebaseConfig.databaseURL}/DEVSMITH.json`)
+                    .then((response) => {
+                        data = response.data; // Store fetched data in global variable
+                        const dataTableBody = document.getElementById('dataTableBody');
+                        dataTableBody.innerHTML = ''; // Clear previous data
+
+                        // Populate table rows with fetched data
+                        for (const key in data) {
+                            if (data.hasOwnProperty(key)) {
+                                const entry = data[key];
+                                const row = `
+                                    <tr>
+                                        <td><button class="title-button" onclick="showPopup('${entry.title}', '${entry.name}', '${entry.Description}', '${entry.Code_or_Query}')">${entry.title}</button></td>
+                                        <td>${entry.name}</td>
+                                        <td>${entry.Description}</td>
+                                        <td>12 Dec 2023</td> <!-- Example date, replace with actual date -->
+                                    </tr>
+                                `;
+                                dataTableBody.innerHTML += row;
+                            }
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching data: ', error);
+                    });
+            };
+
+const showPopup = (title, name, Description, Code_Or_Query) => {
+    try {
+        const popupWindow = window.open("", "_blank", "width=500,height=500");
+        popupWindow.document.write(`
+        <style>
+                        body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a;
+}
+
+.popup-container {
+    width: 80%; /* Adjust as needed */
+    max-width: 800px; /* Adjust as needed */
+    color: #ffffff;
+    padding: 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    font-family: 'Courier New', monospace;
+    box-sizing: border-box;
+}
+
+.popup-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ff5555;
+}
+
+.popup-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.5; /* Improved readability */
+}
+
+.popup-code {
+    font-size: 14px;
+    white-space: pre-wrap;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto; /* Handles long lines of code */
+}
+
+                    </style>
+            <div class="popup-container">
+                <div class="popup-title">${title}</div>
+                <div class="popup-description">${name}<br>${Description}</div>
+                <div class="popup-code">
+                    <strong>Code or Query:</strong><br>
+                    ${Code_Or_Query}
+                </div>
+            </div>
+        `);
+    } catch (error) {
+        console.error('Error opening popup: ', error);
+    }
+};
+
+
+        
+//             const showPopup = (title, name, description, codeOrQuery) => {
+//                 const popupWindow = window.open("", "_blank", "width=500,height=500");
+//                 popupWindow.document.write(`
+//                 <style>
+//                         body, html {
+//     height: 100%;
+//     margin: 0;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: #1a1a1a;
+// }
+
+// .popup-container {
+//     width: 80%; /* Adjust as needed */
+//     max-width: 800px; /* Adjust as needed */
+//     color: #ffffff;
+//     padding: 20px;
+//     border: 1px solid #333;
+//     border-radius: 5px;
+//     font-family: 'Courier New', monospace;
+//     box-sizing: border-box;
+// }
+
+// .popup-title {
+//     font-size: 24px;
+//     margin-bottom: 10px;
+//     color: #ff5555;
+// }
+
+// .popup-description {
+//     font-size: 16px;
+//     margin-bottom: 10px;
+//     line-height: 1.5; /* Improved readability */
+// }
+
+// .popup-code {
+//     font-size: 14px;
+//     white-space: pre-wrap;
+//     background-color: #333;
+//     padding: 10px;
+//     border-radius: 5px;
+//     overflow-x: auto; /* Handles long lines of code */
+// }
+
+//                     </style>
+
+//                     <div class="popup-container">
+//                         <div class="popup-title">${title}</div>
+//                         <div class="popup-description">${name}<br>${description}</div>
+//                         <div class="popup-code">
+//                             <strong>Code or Query:</strong><br>
+//                             ${codeOr_Query}
+//                         </div>
+//                     </div>
+//                 `);
+//             };
+        
+            // Attach event listener to the fetch button
+            document.getElementById('fetchButton').addEventListener('click', fetchData);
+        
+            // Call fetchData when the page loads
+            fetchData();
+        </script>        
+    </div>
+
+    <!-- Added script to reload data -->
+</div>
+</body>
+
+</html>
