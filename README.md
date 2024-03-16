@@ -24,9 +24,9 @@ git clone https://github.com/MrigankaDebnath03/DEVSMITH.git
 **Usage:**
 
 1. Open a extension.js file in from the DevHouse 2 folder.
-2. Press F5 and run the VS Code extension emulation
+2. Press F5 and select the `VS Code Extension Development` option.
 3. In the new VS Code instance Press `Ctrl` + `Shift` + `P` (Windows/Linux) or `Cmd` + `Shift` + `P` (macOS) to open the Command Palette.
-4. Type the name of the command "Show AI Assistant" and press Enter.
+4. Type the name of the command `Show AI Assistant` and press Enter.
 5. Enjoy our product
 
 **Features:**
