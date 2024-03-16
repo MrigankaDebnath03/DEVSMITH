@@ -72,14 +72,7 @@ function activate(context) {
             );
 
             const editor = vscode.window.activeTextEditor;
-            const selection = editor.selection;
-            if (selection && !selection.isEmpty) {
-                const selectionRange = new vscode.Range(selection.start.line, selection.start.character, selection.end.line, selection.end.character);
-                const highlighted = editor.document.getText(selectionRange);
-                if (!highlighted || highlighted === '')
-                getAIAssistantWebviewContent(highlighted);
-            }
-
+            
             currentPanel.webview.onDidReceiveMessage(
                 message => {
                     switch (message.command) {
@@ -123,7 +116,7 @@ function getWebviewContent(count) {
     </html>`;
 }
 
-function getAIAssistantWebviewContent(highlighted) {
+function getAIAssistantWebviewContent() {
     return `
 	<!DOCTYPE html>
 <html lang="en">
@@ -256,7 +249,7 @@ function getAIAssistantWebviewContent(highlighted) {
       
       if (!prompt)  {
         document.getElementById("outputbox").value = "Enter a prompt!";
-        prompt=${highlighted};
+        
         return;
       }
 
