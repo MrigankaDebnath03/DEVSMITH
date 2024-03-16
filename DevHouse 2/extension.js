@@ -33,7 +33,7 @@ function activate(context) {
                 null,
                 context.subscriptions
             );
-
+            
             currentPanel.webview.onDidReceiveMessage(
                 message => {
                     switch (message.command) {
@@ -76,6 +76,15 @@ function activate(context) {
                 context.subscriptions
             );
 
+            const editor = vscode.window.activeTextEditor;
+            const selection = editor.selection;
+            if (selection && !selection.isEmpty) {
+                const selectionRange = new vscode.Range(selection.start.line, selection.start.character, selection.end.line, selection.end.character);
+                const highlighted = editor.document.getText(selectionRange);
+                if (!highlighted || highlighted === '')
+                getAIAssistantWebviewContent(highlighted);
+            }
+
             currentPanel.webview.onDidReceiveMessage(
                 message => {
                     switch (message.command) {
@@ -93,6 +102,10 @@ function activate(context) {
 
     context.subscriptions.push(disposable, aiAssistantDisposable);
 }
+
+
+
+    
 
 function getWebviewContent(count) {
     return `<!DOCTYPE html>
@@ -119,7 +132,7 @@ function getWebviewContent(count) {
     </html>`;
 }
 
-function getAIAssistantWebviewContent() {
+function getAIAssistantWebviewContent(highlighted) {
     return `
 	<!DOCTYPE html>
 <html lang="en">
@@ -136,44 +149,72 @@ function getAIAssistantWebviewContent() {
       font-family: Arial, sans-serif; /* Font */
     }
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px; /* Padding on all sides */
-      height: 100vh;
-    }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px; /* Padding on all sides */
+        height: 100vh;
+          
+    background: linear-gradient(45deg,rgb(134, 115, 115), rgba(15, 72, 146, 0.6),rgba(138, 113, 113, 0.6),rgba(52, 109, 156, 0.6));
+    background-size: 300% 300%;
+    animation: color 8s ease-in infinite;
+      }
+      
+  @keyframes color{
+  
+  0%{
+  background-position: 0 50%;
+  }
+  50%{
+  background-position: 100% 50%;
+  }
+  100%{
+  background-position: 0 50%;
+  }
+  }
+  #title{
+    font-size: 40px;
+    color:  goldenrod;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  } 
+  h1 {
+    text-align: center;
+    margin-top: 0; /* Remove default margin */
+  }
+  textarea {
+    width: 90%;
+    height: 30vh;
+    margin-bottom: 10px; /* Reduced margin between elements */
+    padding: 10px;
+    font-size: 16px;
+    background-color:#33333352; /* Darker textarea background */
+    color: white; /* Text color */
+    border: 0.5px solid goldenrod; /* Remove border */
+    resize: none; /* Disable textarea resizing */
+    border-radius: 2.5%;
+    position:relative;
     
-    h1 {
-      text-align: center;
-      margin-top: 0; /* Remove default margin */
-    }
-    textarea {
-      width: 90%;
-      height: 30vh;
-      margin-bottom: 10px; /* Reduced margin between elements */
-      padding: 10px;
-      font-size: 16px;
-      background-color: #333; /* Darker textarea background */
-      color: white; /* Text color */
-      border: none; /* Remove border */
-      resize: none; /* Disable textarea resizing */
-      text-align: center; /* Center text */
-    }
-    .button-container {
-      display: flex;
-      justify-content: flex-start; /* Align buttons to the left */
-      width: 90%;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 5px;
-      background-color: #444; /* Darker button background */
-      color: cyan;
-      border: none; /* Remove border */
-      cursor: pointer; /* Change cursor to pointer */
-      border-radius: 5px; /* Rounded corners */
+  }
+  .button-container {
+    display: flex;
+    justify-content: flex-start; /* Align buttons to the left */
+    width: 90%;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    background-color: #102d8d; /* Darker button background */
+    color: goldenrod;
+    border: none; /* Remove border */
+    cursor: pointer; /* Change cursor to pointer */
+    border-radius: 5px; /* Rounded corners */
+    border-radius: 25%;
+    position: relative;
+    box-sizing: border-box; 
+    font-family: sans-serif;
     }
     @media only screen and (max-width: 600px) {
       /* Adjust textarea height for smaller screens */
@@ -193,7 +234,7 @@ function getAIAssistantWebviewContent() {
 
 <body>
   <div class="container">
-    <h1>DEV://SMITH</h1>
+    <h1 id="title">DEV://SMITH</h1>
 
     <textarea id="searchbox" placeholder="Enter your search here"></textarea>
     <textarea id="outputbox" placeholder="Results will be displayed here" readonly></textarea>
@@ -202,6 +243,7 @@ function getAIAssistantWebviewContent() {
       <button onclick="run(0)">Search</button>
       <button onclick="run(1)">Debug</button>
       <button onclick="run(2)">Document</button>
+      <a href="https://www.google.com/" target="_blank"><button id="forum"> forum</button></a>
     </div>
   </div>
 
@@ -221,12 +263,18 @@ function getAIAssistantWebviewContent() {
 
   <script>
     async function run(a) {
-      document.getElementById("outputbox").value = "Initializing";
+
+
+
+      document.getElementById("outputbox").value = "Initializing...";
 
       let prompt = document.getElementById("searchbox").value;
-
-      if (!prompt) {
+      
+      
+      
+      if (!prompt)  {
         document.getElementById("outputbox").value = "Enter a prompt!";
+        prompt=${highlighted};
         return;
       }
 
