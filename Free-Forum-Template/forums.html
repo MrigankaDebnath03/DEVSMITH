@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles1.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <!--NavBar Section-->
+        <div class="navbar">
+            <nav class="navigation hide" id="navigation">
+                <span class="close-icon" id="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="forums.html">Forums</a></li>
+                    <li class="nav-item"><a href="posts.html">Posts</a></li>
+                    <li class="nav-item"><a href="detail.html">Detail</a></li>
+                </ul>
+            </nav>
+            <a class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
+            <div class="brand">DevSmith</div>
+        </div>
+        <!--SearchBox Section-->
+<div class="search-box">
+    <div>
+        <select name="" id="searchType">
+            
+            <option value="Titles">Titles</option>
+            
+        </select>
+        <input type="text" id="searchInput" name="q" placeholder="search ...">
+        <button onclick="searchContent()"><i class="fa fa-search"></i></button>
+    </div>
+</div>
+
+<script>
+    function searchContent() {
+        var searchType = document.getElementById('searchType').value.toLowerCase();
+        var searchInput = document.getElementById('searchInput').value.toLowerCase();
+        var elements = document.querySelectorAll('.subjects');
+
+        elements.forEach(function(element) {
+            var text = element.textContent.toLowerCase();
+            if (searchType === 'everything' || searchType === 'titles' && text.includes(searchInput)) {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+    </header>
+    <div class="container">
+        <div class="subforum">
+            <div class="subforum-title">
+                <h1>General Information</h1>
+            </div>
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <i class="fa fa-car center"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <!-- <h4><a href="#">Description Title</a></h4> -->
+                    <h4><a href="#" id="descriptionTitle">Python Hello World</a></h4>
+
+<script>
+    document.getElementById('descriptionTitle').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag
+        window.location.href = 'https://console.firebase.google.com/project/devsmith-4dcba/database/devsmith-4dcba-default-rtdb/data/~2FDEVSMITH~2F-Nt54BK8pE40kNcMZ4QM';
+    });
+</script>
+                    <p>Description: Prints Hello World</p>
+                </div>
+                <div class="subforum-stats subforum-column center">
+                    <span>6 Posts | 10 Topics</span>
+                </div>
+                <div class="subforum-info subforum-column">
+                    <!-- <b><a href="">Last post</a></b> by <a href="">ARCHISMAN SINHAROY</a>  -->
+                    
+                    <p>Last Post by <span style="color: red; font-style: italic;">ARCHISMAN SINHAROY</span></p>
+
+                    <br>on <small>12 Dec 2023</small>
+                </div>
+            </div>
+        </div>
+        <!--More-->
+        
+        <div class="subforum">
+            <div class="subforum-title">
+                <h1>General Information</h1>
+            </div>
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <i class="fa fa-car center"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <h4><a href="#" id="descriptionTitle1">JS Random Number</a></h4>
+
+<script>
+    document.getElementById('descriptionTitle1').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag
+        window.location.href = 'https://console.firebase.google.com/project/devsmith-4dcba/database/devsmith-4dcba-default-rtdb/data/~2FDEVSMITH~2F-Nt54PnJYa4g0DGcsUcg';
+    });
+</script>
+
+                    <p>Description: Gives a random Number</p>
+                </div>
+                <div class="subforum-stats subforum-column center">
+                    <span>4 Posts | 5 Topics</span>
+                </div>
+                <div class="subforum-info subforum-column">
+                    <p>Last Post by <span style="color: red; font-style: italic;">Deeptanshu </span></p> 
+                    <br>on <small>12 Jan 2021</small>
+                </div>
+            </div>
+            <hr class="subforum-devider">
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <i class="fa fa-car center"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <h4><a href="#" id="descriptionTitle2">C++ Random Number</a></h4>
+
+<script>
+    document.getElementById('descriptionTitle2').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag
+        window.location.href = 'https://console.firebase.google.com/project/devsmith-4dcba/database/devsmith-4dcba-default-rtdb/data/~2FDEVSMITH~2F-Nt54c49IZu7qU17FTn7';
+    });
+</script>
+                    <p>Description: Generates a random number between 1 and 10 </p>
+                </div>
+                <div class="subforum-stats subforum-column center">
+                    <span>17 Posts | 12 Topics</span>
+                </div>
+                <div class="subforum-info subforum-column">
+                    <p>Last Post by <span style="color: red; font-style: italic;">Mriganka </span></p> 
+                    <br>on <small>12 Dec 2022</small>
+                </div>
+            </div>
+            <hr class="subforum-devider">
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <i class="fa fa-car center"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <h4><a href="#" id="descriptionTitle3">JAVA Random</a></h4>
+
+<script>
+    document.getElementById('descriptionTitle3').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag
+        window.location.href = 'https://console.firebase.google.com/project/devsmith-4dcba/database/devsmith-4dcba-default-rtdb/data/~2FDEVSMITH~2F-Nt54vmAyM2GKzJ6I1uJ';
+    });
+</script>
+                    <p>Description: Prints a random floating-point number between 0 (inclusive) and 1 (exclusive)</p>
+                </div>
+                <div class="subforum-stats subforum-column center">
+                    <span>24 Posts | 12 Topics</span>
+                </div>
+                <div class="subforum-info subforum-column">
+                    <p>Last Post by <span style="color: red; font-style: italic;">Soumyadip </span></p>  
+                    <br>on <small>6 Jul 2020</small>
+                </div>
+            </div>
+            <hr class="subforum-devider">
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <i class="fa fa-car center"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <h4><a href="#" id="descriptionTitle4">Ruby</a></h4>
+
+<script>
+    document.getElementById('descriptionTitle4').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag
+        window.location.href = 'https://console.firebase.google.com/project/devsmith-4dcba/database/devsmith-4dcba-default-rtdb/data/~2FDEVSMITH~2F-Nt55KqRF2vNGBTP0yTl';
+    });
+</script>
+                    <p>Description: Prints a string "random_string_" followed by a random 3-digit number</p>
+                </div>
+                <div class="subforum-stats subforum-column center">
+                    <span>28 Posts | 7 Topics</span>
+                </div>
+                <div class="subforum-info subforum-column">
+                    <p>Last Post by <span style="color: red; font-style: italic;">Mithu SinhaRoy</span></p>
+                    <br>on <small>6 Jul 2019</small>
+                </div>
+            </div>
+            <hr class="subforum-devider">
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <i class="fa fa-car center"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <h4><a href="#" id="descriptionTitle5">PHP</a></h4>
+
+<script>
+    document.getElementById('descriptionTitle5').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag
+        window.location.href = 'https://console.firebase.google.com/project/devsmith-4dcba/database/devsmith-4dcba-default-rtdb/data/~2FDEVSMITH~2F-Nt55TfJIuU2cX4SmBsA';
+    });
+</script>
+                    <p>Description:  Generates a unique identifier prefixed with code</p>
+                </div>
+                <div class="subforum-stats subforum-column center">
+                    <span>15 Posts | 15 Topics</span>
+                </div>
+                <div class="subforum-info subforum-column">
+                    <p>Last Post by <span style="color: red; font-style: italic;">Sarbendu SinhaRoy</span></p>
+                    <br>on <small>28 Sept 2023</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="subforum">
+            <div class="subforum-title">
+                <h1>General Information</h1>
+            </div>
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <i class="fa fa-car center"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <h4><a href="#" id="descriptionTitle6">C#</a></h4>
+
+<script>
+    document.getElementById('descriptionTitle6').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag
+        window.location.href = 'https://console.firebase.google.com/project/devsmith-4dcba/database/devsmith-4dcba-default-rtdb/data/~2FDEVSMITH~2F-Nt56Ds3CbT27KTxLKQ0';
+    });
+</script>
+                    <p>Description: print 8 characters</p>
+                </div>
+                <div class="subforum-stats subforum-column center">
+                    <span>4 Posts | 10 Topics</span>
+                </div>
+                <div class="subforum-info subforum-column">
+                    <p>Last Post by <span style="color: red; font-style: italic;">Sajal Deep</span></p>
+                    <p>on <small id="dateDisplay"></small></p>
+
+<script>
+    // Get the current date
+    let currentDate = new Date();
+
+    // Get the day, month, and year
+    let day = currentDate.getDate();
+    let month = currentDate.toLocaleString('default', { month: 'short' });
+    let year = currentDate.getFullYear();
+
+    // Format the date string
+    let formattedDate = `${day} ${month} ${year}`;
+
+    // Update the HTML content
+    document.getElementById('dateDisplay').textContent = formattedDate;
+</script>
+
+
+                </div>
+            </div>
+            <hr class="subforum-devider">
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <i class="fa fa-car center"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <h4><a href="#" id="descriptionTitle7">Swift</a></h4>
+
+<script>
+    document.getElementById('descriptionTitle7').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag
+        window.location.href = 'https://console.firebase.google.com/project/devsmith-4dcba/database/devsmith-4dcba-default-rtdb/data/~2FDEVSMITH~2F-Nt56RhfREZ5lqvLQX1b';
+    });
+</script>
+                    <p>Description: Generates a random number between 1 and 100 as a function</p>
+                </div>
+                <div class="subforum-stats subforum-column center">
+                    <span>27 Posts | 11 Topics</span>
+                </div>
+                <div class="subforum-info subforum-column">
+                    <p>Last Post by <span style="color: red; font-style: italic;">prabuddha</span></p>
+                    <br>on <small>26 Jan 2024</small>
+                </div>
+            </div>
+            <hr class="subforum-devider">
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <i class="fa fa-car center"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <h4><a href="#" id="descriptionTitle8">Go</a></h4>
+
+<script>
+    document.getElementById('descriptionTitle8').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag
+        window.location.href = 'https://console.firebase.google.com/project/devsmith-4dcba/database/devsmith-4dcba-default-rtdb/data/~2FDEVSMITH~2F-Nt56eBQhfpgLAw8_Ia4';
+    });
+</script>
+                    <p>Description: Prints a random number between 1 and 100</p>
+                </div>
+                <div class="subforum-stats subforum-column center">
+                    <span>5 Posts | 3 Topics</span>
+                </div>
+                <div class="subforum-info subforum-column">
+                    <p>Last Post by <span style="color: red; font-style: italic;">Raj</span></p>
+                    <br>on <small>9 Sept 2022</small>
+                </div>
+            </div>
+            <hr class="subforum-devider">
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <i class="fa fa-car center"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <h4><a href="#" id="descriptionTitle9">Shell Script</a></h4>
+
+<script>
+    document.getElementById('descriptionTitle9').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag
+        window.location.href = 'https://console.firebase.google.com/project/devsmith-4dcba/database/devsmith-4dcba-default-rtdb/data/~2FDEVSMITH~2F-Nt56oSIQZfH4S8EpKsY';
+    });
+</script>
+                    <p>Description: Prints a random integer generated by the shell</p>
+                </div>
+                <div class="subforum-stats subforum-column center">
+                    <span>4 Posts | 3 Topics</span>
+                </div>
+                <div class="subforum-info subforum-column">
+                    <p>Last Post by <span style="color: red; font-style: italic;">sam</span></p>
+                    <br>on <small>20 Jan 2020</small>
+                </div>
+            </div>
+
+           
+        </div>
+        <!---->
+    </div>
+
+    <!-- Forum Info -->
+    <div class="forum-info">
+        <div class="comment">
+            <!-- Replace the <a> tag with a <button> tag -->
+<button onclick="window.location.href='index.html';">Query</button>
+        </div>
+    <footer>
+        <span>&copy;  MOXA CODERS | DEVSMITH</span>
+    </footer>
+
+   
+    <script src="main.js"></script>
+    
+    
+</body>
+</html>

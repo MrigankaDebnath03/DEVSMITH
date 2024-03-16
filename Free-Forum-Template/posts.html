@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <!--NavBar Section-->
+        <div class="navbar">
+            <nav class="navigation hide" id="navigation">
+                <span class="close-icon" id="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="forums.html">Forums</a></li>
+                    <li class="nav-item"><a href="posts.html">Posts</a></li>
+                    <li class="nav-item"><a href="detail.html">Detail</a></li>
+                </ul>
+            </nav>
+            <a class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
+            <div class="brand">My Forum</div>
+        </div>
+        <!--SearchBox Section-->
+        <div class="search-box">
+            <div>
+                <select name="" id="">
+                    <option value="Everything">Everything</option>
+                    <option value="Titles">Titles</option>
+                    <option value="Descriptions">Descriptions</option>
+                </select>
+                <input type="text" name="q" placeholder="search ...">
+                <button><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <!--Navigation-->
+        <div class="navigate">
+            <span><a href="">Forums</a> >> <a href="">DEVSMITH</a></span>
+        </div>
+        <!--Display posts table-->
+        <div class="posts-table">
+            <div class="table-head">
+                <div class="status">Status</div>
+                <div class="subjects">Subjects</div>
+                <div class="replies">Replies/Views</div>
+                <div class="last-reply">Last Reply</div>
+            </div>
+            <div class="table-row">
+                <div class="status"><i class="fa fa-fire"></i></div>
+                
+                <div class="subjects">
+                    <p><span style="color: red; font-style: italic;">Social Media's Impact: People often debate the positive and negative effects of social media on mental health, productivity, and social interaction.</span></p>
+                    <br>
+                    <span>Started by <b><a href="">Archis</a></b> .</span>
+                </div>
+                <div class="replies">
+                    2 replies <br> 125 views
+                </div>
+
+                <div class="last-reply">
+                    Oct 12 2021
+                    <br>By <b><a href="">Archis</a></b>
+                </div>
+            </div>
+            <!--starts here-->
+            <div class="table-row">
+                <div class="status"><i class="fa fa-phone"></i></div>
+                <div class="subjects">
+                    <p><span style="color: red; font-style: italic;">Cell Phone Safety: Concerns about the health risks of cell phone radiation and excessive screen time are common topics of conversation.</span></p>
+                    <br>
+                    <span>Started by <b><a href="">Subs</a></b> .</span>
+                </div>
+                <div class="replies">
+                    10 replies <br> 500 views
+                </div>
+
+                <div class="last-reply">
+                    Oct 16 2023
+                    <br>By <b><a href="">Subs</a></b>
+                </div>
+            </div>
+
+            <div class="table-row">
+                <div class="status"><i class="fa fa-car"></i></div>
+                <div class="subjects">
+                    <p><span style="color: red; font-style: italic;">The Rise of Automation: Whether AI and automation will take away jobs or create new opportunities is a frequent discussion.</span></p>
+                    <br>
+                    <span>Started by <b><a href="">Mriganka</a></b> .</span>
+                </div>
+                <div class="replies">
+                    17 replies <br> 69 views
+                </div>
+
+                <div class="last-reply">
+                    Nov 12 2021
+                    <br>By <b><a href="">Mriganka</a></b>
+                </div>
+            </div>
+
+            <div class="table-row">
+                <div class="status"><i class="fa fa-book"></i></div>
+                <div class="subjects">
+                    <p><span style="color: red; font-style: italic;">The Future of Work: The rise of remote work, the gig economy, and the changing nature of jobs are hot topics..</span></p>
+                    <br>
+                    <span>Started by <b><a href="">Deeptanshu</a></b> .</span>
+                </div>
+                <div class="replies">
+                    177 replies <br> 699 views
+                </div>
+
+                <div class="last-reply">
+                    Apr 12 2021
+                    <br>By <b><a href="">Deeptanshu</a></b>
+                </div>
+            </div>
+
+            <div class="table-row">
+                <div class="status"><i class="fa fa-rocket"></i></div>
+                <div class="subjects">
+                    <p><span style="color: red; font-style: italic;">Privacy Concerns: People are increasingly worried about data privacy and how companies collect and use their personal information..</span></p>
+                    <br>
+                    <span>Started by <b><a href="">Sajal</a></b> .</span>
+                </div>
+                <div class="replies">
+                    21 replies <br> 25 views
+                </div>
+
+                <div class="last-reply">
+                    Apr 12 2023
+                    <br>By <b><a href="">Sajal</a></b>
+                </div>
+            </div>
+
+            <div class="table-row">
+                <div class="status"><i class="fa fa-rocket"></i></div>
+                <div class="subjects">
+                    <p><span style="color: red; font-style: italic;">The Metaverse: The potential and limitations of virtual reality and the metaverse are up for debate..</span></p>
+                    <br>
+                    <span>Started by <b><a href="">Aman</a></b> .</span>
+                    
+                </div>
+                <div class="replies">
+                    22 replies <br> 325 views
+                </div>
+
+                <div class="last-reply">
+                    Oct 14 2022
+                    <br>By <b><a href="">Aman</a></b>
+                </div>
+            </div>
+
+
+            <div class="table-row">
+                <div class="status"><i class="fa fa-phone"></i></div>
+                <div class="subjects">
+                    <p><span style="color: red; font-style: italic;">Video Game Addiction: There is ongoing discussion about the addictive nature of video games and their impact on children..</span></p>
+                    <br>
+                    <span>Started by <b><a href="">Kunal</a></b> .</span>
+                </div>
+                <div class="replies">
+                    222 replies <br> 155 views
+                </div>
+
+                <div class="last-reply">
+                    Mar 12 2022
+                    <br>By <b><a href="">Kunal</a></b>
+
+                    
+                </div>
+            </div>
+
+            <div class="table-row">
+                <div class="status"><i class="fa fa-fire"></i></div>
+                <div class="subjects">
+                    <p><span style="color: red; font-style: italic;">E-commerce vs Brick-and- Mortar Stores: The debate continues on whether online shopping will eventually replace physical stores..</span></p>
+                    <br>
+                    <span>Started by <b><a href="">Hitesh</a></b> .</span>
+                </div>
+                <div class="replies">
+                    3 replies <br> 17 views
+                </div>
+
+                <div class="last-reply">
+                    Oct 12 2016
+                    <br>By <b><a href="">Hitesh</a></b>
+                </div>
+            </div>
+
+            <div class="table-row">
+                <div class="status"><i class="fa fa-tv"></i></div>
+                <div class="subjects">
+                    <p><span style="color: red; font-style: italic;">Streaming Services vs Cable TV: The rise of streaming services and the decline of cable TV is a common conversation point..</span></p>
+                    <br>
+                    <span>Started by <b><a href="">Ayush</a></b> .</span>
+                </div>
+                <div class="replies">
+                    59 replies <br> 60 views
+                </div>
+
+                <div class="last-reply">
+                    June 22 2018
+                    <br>By <b><a href="">Ayush</a></b>
+                </div>
+            </div>
+
+            <div class="table-row">
+                <div class="status"><i class="fa fa-car"></i></div>
+                <div class="subjects">
+                    <p><span style="color: red; font-style: italic;">Electric Vehicles vs Gas-Powered Cars: The environmental benefits and practicality of electric vehicles are frequently discussed.</span></p>
+                    <br>
+                    <span>Started by <b><a href="">Priyam</a></b> .</span>
+                </div>
+                <div class="replies">
+                    33 replies <br> 65 views
+                </div>
+
+                <div class="last-reply">
+                    Jan 22 2019
+                    <br>By <b><a href="">Priyam</a></b>
+                </div>
+            </div>
+            <!--ends here-->
+        </div>
+        
+    <!-- </div><style>
+        .comment button {
+            background-color: red; /* Red background color */
+            color: white; /* White text color */
+            padding: 10px 20px; /* Padding for the button */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Cursor style */
+            display: block; /* Make it a block element */
+            margin: 0 auto; /* Center the button horizontally */
+            font-size: 16px; /* Font size */
+            font-weight: bold; /* Bold text */
+            text-align: center; /* Center text */
+        }
+    </style> -->
+
+    <div class="forum-info">
+        <div class="comment">
+            <!-- Replace the <a> tag with a <button> tag -->
+            <button onclick="window.location.href='index.html';" style="padding: 10px 20px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer;">POST</button>
+        </div>
+    </div>
+    
+    
+    <!-- <div class="forum-info">
+        <div class="comment">
+            <! Replace the <a> tag with a styled <button> tag -->
+            <!-- <button onclick="window.location.href='index.html';">POST</button>
+        </div>
+    </div> -->
+    
+
+    <div class="note">
+        <span><i class="fa fa-frown-o"></i>&nbsp; 0 Engagement Topic</span>&nbsp;&nbsp;&nbsp;<a href= ""><i class="fa fa-share-square"></i></a><br>
+        <span><i class="fa fa-book"></i>&nbsp; Low Engagement Topic</span>&nbsp;&nbsp;&nbsp;<a href=""><i class="fa fa-share-square"></i></a><br>
+        <span><i class="fa fa-fire"></i>&nbsp; Popular Topic</span>&nbsp;&nbsp;&nbsp;<a href=""><i class="fa fa-share-square"></i></a><br>
+        <span><i class="fa fa-rocket"></i>&nbsp; High Engagement Topic</span>&nbsp;&nbsp;&nbsp;<a href=""><i class="fa fa-share-square"></i></a><br>
+        <span><i class="fa fa-lock"></i>&nbsp; Closed Topic</span>&nbsp;&nbsp;&nbsp;<a href=""><i class="fa fa-share-square"></i></a><br>
+    </div>
+
+    <footer>
+        <span>&copy;  MOXA CODERS | DEVSMITH</span>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>
