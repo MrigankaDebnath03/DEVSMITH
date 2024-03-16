@@ -8,6 +8,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Mono:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #110b0b;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .search-box {
+            max-width: 10000px;
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #110b0b;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            text-align: left;
+        }
+        p {
+            font-family: 'Cascadia Mono', monospace;
+            font-weight: 300;
+            font-size: 1.5em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        a {
+            color: #ff5555;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,24 +46,19 @@
             <nav class="navigation hide" id="navigation">
                 <span class="close-icon" id="close-icon" onclick="showIconBar()"><i class="fa fa-close"></i></span>
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="forms2.html">Forums</a></li>
                     <li class="nav-item"><a href="posts.html">Posts</a></li>
                     <li class="nav-item"><a href="detail.html">Detail</a></li>
+                    <li class="nav-item"><a href="forums.html">Forums</a></li>
                 </ul>
             </nav>
             <a class="bar-icon" id="iconBar" onclick="hideIconBar()"><i class="fa fa-bars"></i></a>
-            <div class="brand">My Forum</div>
+            <div class="brand">DevSmith</div>
         </div>
         <!--SearchBox Section-->
         <div class="search-box">
             <div>
-                <select name="" id="">
-                    <option value="Everything">Everything</option>
-                    <option value="Titles">Titles</option>
-                    <option value="Descriptions">Descriptions</option>
-                </select>
-                <input type="text" name="q" placeholder="search ...">
-                <button><i class="fa fa-search"></i></button>
+                <p>Imagine the immense satisfaction of knowing your code is being used by countless people around the world! Open source contributions are the building blocks of a thriving tech landscape, and here at DEVSMITH, we're a vibrant community that thrives on collaboration. Our project has already benefited from the dedication of passionate contributors like you, and together we've empowered countless users. Join us in shaping the future –  every line of code, every bug fix, every insightful comment adds a valuable piece to the puzzle. Let's keep building something remarkable, together.
+                </p>
             </div>
         </div>
     </header>
