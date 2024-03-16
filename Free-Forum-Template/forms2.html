@@ -129,6 +129,7 @@
         .search-box{
 
             border:none;
+            background-color: white;
             border-color: white;
             padding: 10px;
             display: flex;
@@ -137,7 +138,7 @@
 
         }
         
-        #searchInput{
+        /* #searchInput{
             background-color: #ffffff33;
             border: none;
         }
@@ -154,7 +155,28 @@
             font-size: 35px;
             
             color: rgb(253, 201, 201);
-        }
+        } */
+
+        #searchInput {
+        color: #000000;
+    }
+
+    /* Make the search button wider */
+    #ipsymbol {
+        width: 50px; /* Adjust as needed */
+    }
+
+    /* Position the search box at the right of the navbar */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .search-box {
+        display: flex;
+        align-items: center;
+        text-emphasis-color: black;
+    }
 
 
     </style>
@@ -164,7 +186,7 @@
 <body>
     <header>
         <div class="container">
-        <!--NavBar Section-->
+
 
         <div class="navbar">
             <!-- <nav class="navigation hide" id="navigation"> -->
@@ -190,25 +212,28 @@
             </div>
         </div>
 
-
         <!--SearchBox Section-->
-       
-
-
         <script>
-            function searchContent() {
-                var searchType = document.getElementById('searchType').value.toLowerCase();
-                var searchInput = document.getElementById('searchInput').value.toLowerCase();
-                var elements = document.querySelectorAll('.subjects');
+            // Global variable to store fetched data
+            var data = {};
 
-                elements.forEach(function (element) {
-                    var text = element.textContent.toLowerCase();
-                    if (searchType === 'everything' || searchType === 'titles' && text.includes(searchInput)) {
-                        element.style.display = 'block';
-                    } else {
-                        element.style.display = 'none';
+            function searchContent() {
+                var searchInput = document.getElementById('searchInput').value.toLowerCase();
+
+                // Iterate over the fetched data
+                for (const key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        const entry = data[key];
+                        var title = entry.title.toLowerCase();
+
+                        // Check if title matches search input
+                        if (title.includes(searchInput)) {
+                            // Open popup for the matching entry
+                            showPopup(entry.title, entry.name, entry.Description, entry.Code_or_Query);
+                            break; // Exit loop after finding the first match
+                        }
                     }
-                });
+                }
             }
         </script>
     </header>
@@ -269,9 +294,10 @@
             const fetchData = () => {
                 axios.get(`${firebaseConfig.databaseURL}/DEVSMITH.json`)
                     .then((response) => {
-                        const data = response.data;
+                        data = response.data; // Store fetched data in global variable
                         const dataTableBody = document.getElementById('dataTableBody');
                         dataTableBody.innerHTML = ''; // Clear previous data
+
                         // Populate table rows with fetched data
                         for (const key in data) {
                             if (data.hasOwnProperty(key)) {
@@ -292,11 +318,12 @@
                         console.error('Error fetching data: ', error);
                     });
             };
-        
-            const showPopup = (title, name, description, codeOrQuery) => {
-                const popupWindow = window.open("", "_blank", "width=500,height=500");
-                popupWindow.document.write(`
-                    <style>
+
+const showPopup = (title, name, Description, Code_Or_Query) => {
+    try {
+        const popupWindow = window.open("", "_blank", "width=500,height=500");
+        popupWindow.document.write(`
+        <style>
                         body, html {
     height: 100%;
     margin: 0;
@@ -339,16 +366,79 @@
 }
 
                     </style>
-                    <div class="popup-container">
-                        <div class="popup-title">${title}</div>
-                        <div class="popup-description">${name}<br>${description}</div>
-                        <div class="popup-code">
-                            <strong>Code or Query:</strong><br>
-                            ${codeOrQuery}
-                        </div>
-                    </div>
-                `);
-            };
+            <div class="popup-container">
+                <div class="popup-title">${title}</div>
+                <div class="popup-description">${name}<br>${Description}</div>
+                <div class="popup-code">
+                    <strong>Code or Query:</strong><br>
+                    ${Code_Or_Query}
+                </div>
+            </div>
+        `);
+    } catch (error) {
+        console.error('Error opening popup: ', error);
+    }
+};
+
+
+        
+//             const showPopup = (title, name, description, codeOrQuery) => {
+//                 const popupWindow = window.open("", "_blank", "width=500,height=500");
+//                 popupWindow.document.write(`
+//                 <style>
+//                         body, html {
+//     height: 100%;
+//     margin: 0;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: #1a1a1a;
+// }
+
+// .popup-container {
+//     width: 80%; /* Adjust as needed */
+//     max-width: 800px; /* Adjust as needed */
+//     color: #ffffff;
+//     padding: 20px;
+//     border: 1px solid #333;
+//     border-radius: 5px;
+//     font-family: 'Courier New', monospace;
+//     box-sizing: border-box;
+// }
+
+// .popup-title {
+//     font-size: 24px;
+//     margin-bottom: 10px;
+//     color: #ff5555;
+// }
+
+// .popup-description {
+//     font-size: 16px;
+//     margin-bottom: 10px;
+//     line-height: 1.5; /* Improved readability */
+// }
+
+// .popup-code {
+//     font-size: 14px;
+//     white-space: pre-wrap;
+//     background-color: #333;
+//     padding: 10px;
+//     border-radius: 5px;
+//     overflow-x: auto; /* Handles long lines of code */
+// }
+
+//                     </style>
+
+//                     <div class="popup-container">
+//                         <div class="popup-title">${title}</div>
+//                         <div class="popup-description">${name}<br>${description}</div>
+//                         <div class="popup-code">
+//                             <strong>Code or Query:</strong><br>
+//                             ${codeOr_Query}
+//                         </div>
+//                     </div>
+//                 `);
+//             };
         
             // Attach event listener to the fetch button
             document.getElementById('fetchButton').addEventListener('click', fetchData);
