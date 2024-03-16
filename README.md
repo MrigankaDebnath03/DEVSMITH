@@ -15,7 +15,7 @@ git clone https://github.com/MrigankaDebnath03/DEVSMITH.git
 
 **Configuration:**
 
-* Before running the extension.js file, make youre you have node installed in your system and run this command in the terminal window ` npm install -g yo code-generator `
+* Before running the extension.js file, make youre you have node installed in your system and run this command in the terminal window ``` npm install -g yo code-generator ```
 
 
 2. Open the project folder in Visual Studio Code.
