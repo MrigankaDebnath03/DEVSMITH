@@ -1,4 +1,3 @@
-
 const vscode = require('vscode');
 
 function activate(context) {
@@ -8,9 +7,7 @@ function activate(context) {
     let count = 0;
 
     let disposable = vscode.commands.registerCommand('test.showWebview', function () {
-        const columnToShowIn = vscode.window.activeTextEditor
-            ? vscode.window.activeTextEditor.viewColumn
-            : undefined;
+        const columnToShowIn = vscode.ViewColumn.Two; // Changed from vscode.ViewColumn.One
 
         if (currentPanel) {
             currentPanel.reveal(columnToShowIn);
@@ -18,7 +15,7 @@ function activate(context) {
             currentPanel = vscode.window.createWebviewPanel(
                 'testWebview',
                 'Test Webview',
-                vscode.ViewColumn.One,
+                columnToShowIn,
                 {
                     enableScripts: true
                 }
@@ -50,9 +47,7 @@ function activate(context) {
     });
 
     let aiAssistantDisposable = vscode.commands.registerCommand('test.showAIAssistant', function () {
-        const columnToShowIn = vscode.window.activeTextEditor
-            ? vscode.window.activeTextEditor.viewColumn
-            : undefined;
+        const columnToShowIn = vscode.ViewColumn.Two; // Changed from vscode.ViewColumn.One
 
         if (currentPanel) {
             currentPanel.reveal(columnToShowIn);
@@ -60,7 +55,7 @@ function activate(context) {
             currentPanel = vscode.window.createWebviewPanel(
                 'aiAssistantWebview',
                 'AI Assistant',
-                vscode.ViewColumn.One,
+                columnToShowIn,
                 {
                     enableScripts: true
                 }
@@ -102,10 +97,6 @@ function activate(context) {
 
     context.subscriptions.push(disposable, aiAssistantDisposable);
 }
-
-
-
-    
 
 function getWebviewContent(count) {
     return `<!DOCTYPE html>
@@ -243,7 +234,7 @@ function getAIAssistantWebviewContent(highlighted) {
       <button onclick="run(0)">Search</button>
       <button onclick="run(1)">Debug</button>
       <button onclick="run(2)">Document</button>
-      <a href="https://www.google.com/" target="_blank"><button id="forum"> forum</button></a>
+      <a href="http://127.0.0.1:5500/Free-Forum-Template/forms2.html" target="_blank"><button id="forum"> forum</button></a>
     </div>
   </div>
 
