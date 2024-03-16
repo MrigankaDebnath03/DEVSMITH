@@ -35,15 +35,8 @@
         "command": "test.showAIAssistant",
         "title": "Show AI Assistant"
       }
-    ],
-    "menus": {
-      "editor/context": [
-        {
-          "command": "dev---smith.moxa",
-          "when": "editorHasSelection"
-        }
-      ]
-    }
+    ]
+    
   },
   "scripts": {
     "lint": "eslint .",
