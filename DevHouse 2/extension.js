@@ -7,7 +7,7 @@ function activate(context) {
     let count = 0;
 
     let disposable = vscode.commands.registerCommand('test.showWebview', function () {
-        const columnToShowIn = vscode.ViewColumn.Two; // Changed from vscode.ViewColumn.One
+        const columnToShowIn = vscode.ViewColumn.Two;
 
         if (currentPanel) {
             currentPanel.reveal(columnToShowIn);
@@ -47,7 +47,7 @@ function activate(context) {
     });
 
     let aiAssistantDisposable = vscode.commands.registerCommand('test.showAIAssistant', function () {
-        const columnToShowIn = vscode.ViewColumn.Two; // Changed from vscode.ViewColumn.One
+        const columnToShowIn = vscode.ViewColumn.Two;
 
         if (currentPanel) {
             currentPanel.reveal(columnToShowIn);
@@ -107,7 +107,7 @@ function getWebviewContent(count) {
         <title>Test Webview</title>
     </head>
     <body>
-        <button id="clickButton">Click me</button>
+        <button id="clickButton" style="background-color: #ff6347; color: white;">Click me</button>
         <p id="count">Button clicked ${count} times</p>
 
         <script>
@@ -135,16 +135,16 @@ function getAIAssistantWebviewContent(highlighted) {
     body {
       margin: 0;
       padding: 0;
-      background-color: #222; /* Dark background color */
-      color: white; /* Text color */
-      font-family: Arial, sans-serif; /* Font */
+      background-color: #222;
+      color: white;
+      font-family: Arial, sans-serif;
     }
     .container {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 20px; /* Padding on all sides */
+        padding: 20px;
         height: 100vh;
           
     background: linear-gradient(45deg,rgb(134, 115, 115), rgba(15, 72, 146, 0.6),rgba(138, 113, 113, 0.6),rgba(52, 109, 156, 0.6));
@@ -171,25 +171,25 @@ function getAIAssistantWebviewContent(highlighted) {
   } 
   h1 {
     text-align: center;
-    margin-top: 0; /* Remove default margin */
+    margin-top: 0;
   }
   textarea {
     width: 90%;
     height: 30vh;
-    margin-bottom: 10px; /* Reduced margin between elements */
+    margin-bottom: 10px;
     padding: 10px;
     font-size: 16px;
-    background-color:#33333352; /* Darker textarea background */
-    color: white; /* Text color */
-    border: 0.5px solid goldenrod; /* Remove border */
-    resize: none; /* Disable textarea resizing */
-    border-radius: 2.5%;
+    background-color:#33333352;
+    color: white;
+    border: 0.5px solid goldenrod;
+    resize: none;
+    border-radius: 0px;
     position:relative;
     
   }
   .button-container {
     display: flex;
-    justify-content: flex-start; /* Align buttons to the left */
+    justify-content: flex-start;
     width: 90%;
   }
   
@@ -197,18 +197,16 @@ function getAIAssistantWebviewContent(highlighted) {
     padding: 10px 20px;
     font-size: 16px;
     margin: 5px;
-    background-color: #102d8d; /* Darker button background */
-    color: goldenrod;
-    border: none; /* Remove border */
-    cursor: pointer; /* Change cursor to pointer */
-    border-radius: 5px; /* Rounded corners */
-    border-radius: 25%;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 0px;
     position: relative;
     box-sizing: border-box; 
     font-family: sans-serif;
     }
     @media only screen and (max-width: 600px) {
-      /* Adjust textarea height for smaller screens */
       textarea {
         height: 20vh;
       }
@@ -241,27 +239,20 @@ function getAIAssistantWebviewContent(highlighted) {
   <script type="module">
     import { GoogleGenerativeAI } from "@google/generative-ai";
 
-    const apiKey = 'AIzaSyAEH3dG-EzGcmJwWIjwYTYeLGKhlcbXIPM'; // Replace with your actual API key
+    const apiKey = 'AIzaSyAEH3dG-EzGcmJwWIjwYTYeLGKhlcbXIPM';
 
-    // Initialize Generative AI and the Generative Model
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    // Export elements to global scope
     window.genAI = genAI;
     window.model = model;
   </script> 
 
   <script>
     async function run(a) {
-
-
-
       document.getElementById("outputbox").value = "Initializing...";
 
       let prompt = document.getElementById("searchbox").value;
-      
-      
       
       if (!prompt)  {
         document.getElementById("outputbox").value = "Enter a prompt!";
@@ -276,7 +267,7 @@ function getAIAssistantWebviewContent(highlighted) {
         else if(a==2){
             prompt=prompt+" for the following code create documentation";
         }
-        const result = await window.model.generateContent(prompt); // Access model from global scope
+        const result = await window.model.generateContent(prompt);
         const response = await result.response;
         const text = await response.text();
     
