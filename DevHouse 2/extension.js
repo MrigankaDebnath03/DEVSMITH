@@ -232,7 +232,7 @@ function getAIAssistantWebviewContent() {
   <script type="module">
     import { GoogleGenerativeAI } from "@google/generative-ai";
 
-    const apiKey = 'AIzaSyAEH3dG-EzGcmJwWIjwYTYeLGKhlcbXIPM';
+    const apiKey = 'your own api';  // enter your own gemini api key
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
